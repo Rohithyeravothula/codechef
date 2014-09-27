@@ -1,23 +1,37 @@
 #include<stdio.h>
-long long int ch(long long int i,long long int m)
+long long int  modPow(long long int a, long long int x,  long long int p) {
+    long long int res = 1;
+    while(x > 0) {
+        if( x % 2 != 0) {
+            res = (res * a) % p;
+        }
+        a = (a * a) % p;
+        x /= 2;
+    }
+    return res;
+}
+
+long long int modInverse(long long int a, long long int p) {
+    return modPow(a, p-2, p);
+}
+long long int sum4(long long int n,long long int m)
 {
-    long long int k;
-    k=(i*i)%m;
-    k=(k*k)%m;
-    return k;
+    long long int s;
+    s=(n)*(n+1)%m;
+    s=(s*((2*n)+1))%m;
+    s=(s*(((3*n*n)%m)+(3*n)-1))%m;
+    s=(s*modInverse(30,m))%m;
+    return s;
 }
 main()
 {
     int t;
+    long long int n,m;
     scanf("%d",&t);
-    long long int n,m,k,i;
     while(t--)
     {
         scanf("%lld %lld",&n,&m);
-        k=0;
-        for(i=1;i<=n;i++)
-        k=(k+ch(i,m)*(n/i));
-        printf("%lld\n",k);
+        printf("%lld\n",sum4(n,m));
     }
     return 0;
 }

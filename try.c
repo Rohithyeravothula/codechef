@@ -1,10 +1,15 @@
 #include<stdio.h>
 main()
 {
-    char c=getchar();
-    if(c=='\\')
-    printf("same\n");
-    else
-    printf("no\n");
-    return 0;
+    char a;
+    int t=10;
+    while(t--)
+    {
+        while(1)
+        {a=getchar();
+        putchar(a);
+        a=getchar();
+        if(a=='\n')
+            break;}
+    }
 }
